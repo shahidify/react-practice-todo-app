@@ -7,12 +7,8 @@ class TextInput extends React.Component {
     e.preventDefault();
     if (e.which === 13) {
       const listItem = this.itemRef.current.value;
-      console.log("handle Submit - ", listItem);
-
       this.props.addItem(listItem);
       e.target.value = "";
-      console.log(e.which);
-      //e.currentTarget.reset();
     }
   };
   render() {

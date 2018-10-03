@@ -7,7 +7,6 @@ class App extends React.Component {
     todos: {}
   };
   addItem = item => {
-    console.log("Adding an item " + item);
     // 1. Take a copy of the existing state
     const todos = { ...this.state.todos };
     // 2. Add new todo to the todos list
@@ -15,17 +14,22 @@ class App extends React.Component {
     // 3. Set the new todos object to State
     this.setState({ todos });
   };
-  handleChange = e => {
-    console.log(e.target.value);
+
+  deleteItem = item => {
+    console.log("delete item : ", item);
+    const todos = { ...this.state.todos };
+    delete todos[item];
+    this.setState({ todos });
   };
+
   render() {
     return (
       <div className="todoapp">
         <div className="header">
           <h1>To Do</h1>
-          <TextInput addItem={this.addItem} handleChange={this.handleChange} />
+          <TextInput addItem={this.addItem} />
           <section className="main">
-            <TodoList todos={this.state.todos} />
+            <TodoList todos={this.state.todos} deleteItem={this.deleteItem} />
           </section>
         </div>
       </div>
